@@ -24,5 +24,16 @@ CREATE TABLE IF NOT EXISTS calificaciones (
     course_id INT NOT NULL,
     grade NUMERIC(3, 2) NOT NULL,
     comments VARCHAR(255),
-    status BOOLEAN DEFAULT TRUE
+    status BOOLEAN DEFAULT TRUE,
 )
+
+-- horarios
+CREATE TABLE horarios(
+    id SERIAL PRIMARY KEY,
+    dia VARCHAR(20) NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL
+    asignatura VARCHAR(100) NOT NULL
+);
+    status BOOLEAN DEFAULT TRUE
+

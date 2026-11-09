@@ -82,3 +82,24 @@ INSERT INTO calificaciones (
 (9, 1009, 9, 4.8, 'Excelente desarrollo de aplicaciones móviles.', TRUE),
 
 (10, 1010, 10, 4.1, 'Buen desempeño en inteligencia artificial.', TRUE);
+
+INSERT INTO horarios(
+    dia,
+    hora_inicio,
+    hora_fin,
+    asignatura
+) VALUES
+('Lunes', '08:00', '10:00', 'Programación I'),
+('Lunes', '10:00', '12:00', 'Matemáticas I'),
+
+('Martes', '08:00', '10:00', 'Bases de Datos'),
+('Martes', '10:00', '12:00', 'Programación Web I'),
+
+('Miércoles', '08:00', '10:00', 'Arquitectura de Software'),
+('Miércoles', '10:00', '12:00', 'Ingeniería de Software'),
+
+('Jueves', '08:00', '10:00', 'Redes de Computadores'),
+('Jueves', '10:00', '12:00', 'Sistemas Operativos'),
+
+('Viernes', '08:00', '10:00', 'Desarrollo de Aplicaciones'),
+('Viernes', '10:00', '12:00', 'Inteligencia Artificial');
