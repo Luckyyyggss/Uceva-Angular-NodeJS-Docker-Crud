@@ -40,6 +40,13 @@ export class HandleError {
         .json({ error: error.message });
     }
 
+    // Violación de restricción UNIQUE en PostgreSQL (ej. nombre de curso repetido)
+    if (typeof error === 'object' && error !== null && (error as { code?: string }).code === '23505') {
+      return res
+        .status(409)
+        .json({ error: 'Ya existe un registro con esos datos (valor duplicado)' });
+    }
+
     return res
       .status(500)
       .json({ error: 'Internal Server error' });
