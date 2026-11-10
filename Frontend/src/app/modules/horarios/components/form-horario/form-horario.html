@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <label for="asignatura" class="form-label">Asignatura *</label>
+            <input type="text" id="asignatura" class="form-control" formControlName="asignatura"
+                [class.is-invalid]="isInvalid('asignatura')" placeholder="Ej: Programación Web I">
+            @if (isInvalid('asignatura')) {
+                <small class="text-danger">La asignatura es obligatoria (máximo 100 caracteres).</small>
+            }
+        </div>
+
+        <div class="col-md-6">
+            <label for="dia" class="form-label">Día *</label>
+            <select id="dia" class="form-select" formControlName="dia" [class.is-invalid]="isInvalid('dia')">
+                <option value="">Seleccione un día</option>
+                @for (dia of dias; track dia) {
+                    <option [value]="dia">{{ dia }}</option>
+                }
+            </select>
+            @if (isInvalid('dia')) {
+                <small class="text-danger">Selecciona un día.</small>
+            }
+        </div>
+
+        <div class="col-md-6">
+            <label for="hora_inicio" class="form-label">Hora de inicio *</label>
+            <input type="time" id="hora_inicio" class="form-control" formControlName="hora_inicio"
+                [class.is-invalid]="isInvalid('hora_inicio')">
+            @if (isInvalid('hora_inicio')) {
+                <small class="text-danger">La hora de inicio es obligatoria.</small>
+            }
+        </div>
+
+        <div class="col-md-6">
+            <label for="hora_fin" class="form-label">Hora de fin *</label>
+            <input type="time" id="hora_fin" class="form-control" formControlName="hora_fin"
+                [class.is-invalid]="isInvalid('hora_fin') || rangoInvalido">
+            @if (isInvalid('hora_fin')) {
+                <small class="text-danger">La hora de fin es obligatoria.</small>
+            } @else if (rangoInvalido) {
+                <small class="text-danger">La hora de fin debe ser posterior a la hora de inicio.</small>
+            }
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="formCancel.emit()">
+            Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="saving">
+            <i class="bi bi-save me-2"></i>
+            {{ submitLabel }}
+        </button>
+    </div>
+
+</form>
