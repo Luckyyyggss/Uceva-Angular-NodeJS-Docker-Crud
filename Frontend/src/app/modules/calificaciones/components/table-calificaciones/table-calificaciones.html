@@ -1,0 +1,51 @@
+<div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle">
+
+        <thead class="table-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Comentarios</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (item of calificaciones; track item.id) {
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td class="fw-semibold">{{ item.studentName }}</td>
+                    <td>{{ item.courseName }}</td>
+                    <td>
+                        <span class="badge" [class]="item.grade >= notaAprobatoria ? 'text-bg-success' : 'text-bg-danger'">
+                            {{ item.grade.toFixed(1) }}
+                        </span>
+                    </td>
+                    <td class="text-start text-truncate" style="max-width: 260px;" [title]="item.comments ?? ''">
+                        {{ item.comments || '—' }}
+                    </td>
+                    <td>
+                        @if (item.status) {
+                            <span class="badge text-bg-success">Activo</span>
+                        } @else {
+                            <span class="badge text-bg-danger">Inactivo</span>
+                        }
+                    </td>
+                    <td>
+                        <app-table-actions [id]="item.id" (onAction)="onClickActions.emit($event)" />
+                    </td>
+                </tr>
+            } @empty {
+                <tr>
+                    <td colspan="7" class="text-center py-4 text-muted">
+                        No hay calificaciones registradas.
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

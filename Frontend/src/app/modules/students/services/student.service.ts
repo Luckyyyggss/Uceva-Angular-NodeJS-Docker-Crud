@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_URL } from '../../shared/config/api.config';
 import { CreateStudentRequest, Student, UpdateStudentRequest } from '../interfaces/student';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { CreateStudentRequest, Student, UpdateStudentRequest } from '../interfac
 export class StudentService {
   
   http = inject(HttpClient);
-  url = 'http://localhost:3000/api/students';
+  url = `${API_URL}/students`;
 
   getAll(): Observable<Student[]> {
     return this.http.get<Student[]>(this.url);

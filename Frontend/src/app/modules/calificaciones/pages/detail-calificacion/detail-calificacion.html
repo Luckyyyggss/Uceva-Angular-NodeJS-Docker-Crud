@@ -1,0 +1,88 @@
+<app-back />
+<div class="container-fluid mt-3">
+
+    <div class="mb-4">
+        <h3 class="fw-bold mb-1">Detalle de la calificación</h3>
+        <p class="text-muted mb-0">Nota registrada para un estudiante en un curso.</p>
+    </div>
+
+    @if (calificacion) {
+
+        <div class="card border mb-4">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center"
+                        style="width: 65px; height: 65px; font-size: 2rem;">
+                        <i class="bi bi-journal-check"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h4 class="fw-bold mb-1">{{ calificacion.studentName }}</h4>
+                        <span class="text-muted">Calificación #{{ calificacion.id }}</span>
+                    </div>
+                    <span class="badge rounded-pill" [class]="calificacion.status ? 'text-bg-success' : 'text-bg-danger'">
+                        {{ calificacion.status ? 'Activa' : 'Inactiva' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-12 col-lg-7">
+                <div class="card border h-100">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-info-circle text-primary me-2"></i>Información general
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">Estudiante</small>
+                                <span class="fw-medium">{{ calificacion.studentName }}</span>
+                                <small class="text-muted d-block">Código: {{ calificacion.student_id }}</small>
+                            </div>
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">Curso</small>
+                                <span class="fw-medium">{{ calificacion.courseName }}</span>
+                                <small class="text-muted d-block">Código: {{ calificacion.course_id }}</small>
+                            </div>
+                            <div class="col-12">
+                                <small class="text-muted d-block mb-1">Comentarios</small>
+                                <span>{{ calificacion.comments || 'Sin comentarios' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <div class="card border h-100">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="fw-semibold mb-0">
+                            <i class="bi bi-award text-primary me-2"></i>Nota
+                        </h5>
+                    </div>
+                    <div class="card-body p-4 text-center">
+                        <h1 class="fw-bold display-4 mb-2"
+                            [class]="calificacion.grade >= notaAprobatoria ? 'text-success' : 'text-danger'">
+                            {{ calificacion.grade.toFixed(1) }}
+                        </h1>
+                        <span class="badge"
+                            [class]="calificacion.grade >= notaAprobatoria ? 'text-bg-success' : 'text-bg-danger'">
+                            {{ calificacion.grade >= notaAprobatoria ? 'Aprobado' : 'Reprobado' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    } @else if (loaded) {
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            No se encontró información de la calificación.
+        </div>
+    }
+
+</div>

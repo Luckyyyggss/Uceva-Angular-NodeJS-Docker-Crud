@@ -10,6 +10,9 @@ import { NavbarItem } from './modules/shared/interfaces/navbar';
 })
 export class App {
   navbarItems: NavbarItem[] = [
-    { title: 'Students', url: '/students' },
+    { title: 'Estudiantes', url: '/students' },
+    { title: 'Cursos', url: '/courses' },
+    { title: 'Calificaciones', url: '/calificaciones' },
+    { title: 'Horarios', url: '/horarios' },
   ];
 }
